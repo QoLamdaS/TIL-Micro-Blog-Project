@@ -1,2 +1,7 @@
+from flask import Flask
 
-print("\nI really have no idea how to build this project.\n")
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+    return "<p>Hello, World!</p>"
