@@ -26,7 +26,7 @@
             {% for entry in entries %}
                 <article class="entry-card">
                     <h3>{{ entry.title }}</h3>
-                    <small class="date">Posted on: {{ entry.date_posted.strftime('%Y-%m-%d %H:%M') }}</small>
+                    <small class="date">Posted on: {{ entry.date_posted.strftime('%d-%m-%Y %H:%M') }}</small> #! Display date in DD-MM-YYYY and the time is UTC+0/GMT+0
                     <p class="content">{{ entry.content }}</p>
                 </article>
             {% endfor %}
