@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% if session.get('is_admin') %}
+    <section class="form-section">
+        <h2>Log a New Insight</h2>
+        <form action="{{ url_for('add_entry') }}" method="POST">
+            <div class="form-group">
+                <label for="title">What did you learn today?</label>
+                <input type="text" id="title" name="title" placeholder="e.g., Python List Comprehensions" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Explain it briefly:</label>
+                <textarea id="content" name="content" rows="4" placeholder="Write details, code snippets, or thoughts..." required></textarea>
+            </div>
+            <button type="submit" class="btn">Publish Entry</button>
+        </form>
+    </section>
+    <hr>
+    {% endif %}
+
+    <section class="entries-section">
+        <h2>Recent Learnings</h2>
+        {% if entries %}
+            {% for entry in entries %}
+                <article class="entry-card">
+                    <h3>{{ entry.title }}</h3>
+                    <small class="date">Posted on: {{ entry.date_posted.strftime('%Y-%m-%d %H:%M') }}</small>
+                    <p class="content">{{ entry.content }}</p>
+                </article>
+            {% endfor %}
+        {% else %}
+            <p class="no-entries">No entries recorded yet. Stay tuned!</p>
+        {% endif %}
+    </section>
+
+{% endblock %}
